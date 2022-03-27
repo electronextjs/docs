@@ -1,28 +1,20 @@
 ---
 title: App > Custom > Menu
 ---
-# Customizing the Menu 
+# Customizando o Menu 
 ![ElectroNext.js Example](/img/app.custom.menu.png)
 
-The options in the main menu are just samples, you can create your own menu using electronext components or using your own stylized components, see how to do it below!
+As opções do menu principal são apenas amostras, você pode criar seu próprio menu usando componentes electronext ou usando seus próprios componentes estilizados, veja como fazer abaixo! 
 
-## Creating Menu
-Create a `Menu` component in the `components` folder 
-```jsx bg=4
+## Criando Menu
+Crie um componente `Menu` na pasta `components`
+```js
 //map
-<<<<<<< HEAD
-📁 Next
- ├─> components
- │   └─> menu.tsx
- ├── pages
- ├── public
-=======
 App
 ├─> components
 │   └─> menu.tsx
 ├── pages
 ├── public
->>>>>>> 5b24fd31b5261f9bdaff8936643c16badcd61b86
 
 ```
 
@@ -53,26 +45,26 @@ export const Menu = () => {
 }
 ```
 
-## Adding Menu
-In the `pages` folder locate the file `_electronext.tsx` 
-```jsx bg=6
+## Adicionando Menu
+Na pasta `pages` localize o arquivo `_electronext.tsx`
+```jsx
 //map
-📁 Next
- ├─> components
- │   └─> menu.ts
- ├── pages
- │   └─> _electronext.tsx
- ├── public
+App
+├─> components
+│   └─> menu.ts
+├── pages
+│   └─> _electronext.tsx
+├── public
+
 ```
-Import your `Menu` component and add in `ElectroNextApp` the `CustomMenuDrawer` property with its value being your `Menu` 
-```tsx focus=4,12
+Importe seu componente `Menu` e adicione em `ElectroNextApp` a propriedade `CustomMenuDrawer` com seu valor sendo seu `Menu`
+```tsx focus=1,11
 //_electronext.tsx
 
-//add your new imports below ¬
 import { Menu } from 'components/menu'
 
 const AppElectroNext = ({children}) => {
-  const config = enconfig as enConfigAppType
+  const config = enconfig as ElectroNextAppConfig
   return (
     <ElectroNextApp 
       Electron={globalThis.Electron}  
@@ -85,5 +77,5 @@ const AppElectroNext = ({children}) => {
 }
 ```
 
-## Result
+## Resultado
 ![ElectroNext.js Example](/img/app.custom.menu.result.png)

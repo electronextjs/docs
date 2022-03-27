@@ -11,6 +11,7 @@ Create your own custom title bar for your app, see how to do it below!
 Create a `TitleBar` component in the `components` folder 
 ```jsx bg=4,5,6
 //map
+<<<<<<< HEAD
 📁 Next
  ├─> components
  │   └─> Titlebar
@@ -18,6 +19,15 @@ Create a `TitleBar` component in the `components` folder
  │       └─> styled.scss
  ├── pages
  ├── public
+=======
+App
+├─> components
+│   └─> Titlebar
+│       └─> index.tsx
+│       └─> styled.scss
+├── pages
+├── public
+>>>>>>> 5b24fd31b5261f9bdaff8936643c16badcd61b86
 
 ```
 
@@ -151,7 +161,6 @@ In the `pages` folder locate the file `_electronext.tsx`
  ├── pages
  │   └─> _electronext.tsx
  ├── public
-
 ```
 Import your `TitleBar` component and add in `ElectroNextApp` the `CustomTitleBar` property with its value being your `TitleBar` 
 ```tsx focus=4,12
