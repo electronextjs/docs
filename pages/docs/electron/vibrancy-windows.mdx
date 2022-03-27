@@ -1,0 +1,103 @@
+---
+title: Electron > Vibrancy on Windows
+---
+
+import Callout from 'nextra-theme-docs/callout'
+
+## Vibrancy on Windows
+
+### Using Custom BrowserWindow 
+This BrowserWindow has [vibrancy effect for electron](https://github.com/Seo-Rii/electron-acrylic-window) compatible with windows ^10. 
+
+<Callout emoji="⚠️">
+It only affects Windows 10 or higher. If the operating system is not Windows 10, it will return to the original vibration function.
+</Callout>
+
+To use this feature you need to change Electron's native `BrowserWindow` to `BrowserWindowVibrancy` in `index.ts` 
+
+```bash
+📁 Electron
+ ├─> index.ts
+ ├── preload.ts
+ ├── tsconfig.ts
+ ├── win.options.ts
+```
+Uncomment `BrowserWindowVibrancy` and comment out `BrowserWindow`.
+```tsx
+//index.ts
+
+const { BrowserWindow: BrowserWindowVibrancy } = require("electron-acrylic-window");
+//const { BrowserWindow } = require("electron");
+
+```
+Look for `const win = new BrowserWindow({...winOptions})` and change `BrowserWindow` to `BrowserWindowVibrancy`.
+
+```tsx
+//index.ts
+
+const win = new BrowserWindowVibrancy({...winOptions})
+
+```
+
+### Vibrancy Options
+
+#### `theme`
+> Sets color of acrylic effect.
+ - type `string`
+ - values `'light' |'dark' | 'appearance-based'` or a hex color code with alpha `'#222222aa'`.
+
+#### `effect`
+> Sets the type of Windows transparency effect.
+ - type `string`
+ - values `'acrylic' | 'blur'`
+
+#### `useCustomWindowRefreshMethod`
+> Use custom window resize/move handler for performance.
+ - type `boolean`
+ - default value `true`
+
+#### `maximumRefreshRate`
+> Maximum refresh rate of the application, in hertz.
+ - type `number`
+ - default value `60`
+
+#### `disableOnBlur`
+> If true, acrylic effect will be disabled when the window loses focus, to mimic the behaviour of normal UWP apps.
+ - type `boolean`
+ - default value `true`
+
+#### `debug`
+> If true, log will be printed to console.
+ - type `boolean`
+ - default value `false`
+
+### How to use the options
+Access the `win.options.ts` file, in this file you add the options of [BrowserWindows Options](https://www.electronjs.org/pt/docs/latest/api/browser-window#new-browserwindowoptions) .
+```bash
+📁 Electron
+ ├─- index.ts
+ ├── preload.ts
+ ├── tsconfig.ts
+ ├─> win.options.ts
+```
+Add the `vibrancy` property to winOptions with the options.
+```ts focus=14,15,16
+//win.options.ts
+
+const winOptions:BrowserWindowConstructorOptions = {
+  width: 800,
+  height: 600,
+  backgroundColor: "#282456",
+  frame: false,
+  visualEffectState: 'inactive',
+  webPreferences: {
+    nodeIntegration: true,
+    contextIsolation: false,
+    preload: join(__dirname, 'preload.js'),
+  },
+  vibrancy: {
+    effect: 'acrylic'
+  }
+}
+
+```
