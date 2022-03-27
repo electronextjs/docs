@@ -1,0 +1,151 @@
+---
+title: App > Components > Drawer
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import { Button } from "electronext"
+
+
+## Drawer
+An interactive element fixed to the edge of the screen.
+
+```tsx 
+import { Drawer } from "electronext"
+
+export const Page = () => {
+  return (<>
+    <Drawer>
+      Your App
+    </Drawer>
+  </>)
+}
+```
+
+## Props and Type
+
+### `visible`
+- type `boolean | null`
+
+### `placement`
+- type? `'left' | 'right'`
+
+### `clickOut`
+> Enable `drawer` closing when clicking anywhere outside of it. <br/>
+> Need to use `onClose` !!
+> > [Example](#clickout-example)
+- type? `boolean`
+
+### `onClose`
+> Function executed when `drawer` is closed
+> > Return Values:  <br/>
+> >  `clickOut?`: returns `true` if clicked outside of `Drawer`
+
+- type? `(res:{clickOut?:boolean}) => any`
+
+### `id` and `className`
+- type? `string`
+
+### `style`
+- type? `CSSProperties`
+
+## Other `Drawer` Components
+ - DrawerHeader 
+ - DrawerMain
+ - DrawerFooter 
+ - Hr
+ 
+## Examples
+### normal Example 
+```tsx 
+import { useState } from 'react'
+import { Drawer, DrawerMain, Button, ButtonList } from "electronext"
+
+export const Page = () => {
+
+  const [showDrawer, setShowDrawer] = useState(false);
+
+  return (<>
+    <Button 
+      label={`${showDrawer ? 'Close ' : 'Open'} Drawer`}
+      onClick={() => {
+        setShowDrawer(!showDrawer)
+      }}
+    />
+    <Drawer visible={showDrawer}>
+      <DrawerMain>
+        <ButtonList label="clickOut Example"/>
+      </DrawerMain>
+    </Drawer>
+  </>)
+}
+```
+
+
+### clickOut Example 
+```tsx bg=16,17,18,19
+import { useState } from 'react'
+import { Drawer, DrawerMain, Button, ButtonList } from "electronext"
+
+export const Page = () => {
+  
+  const [showDrawer, setShowDrawer] = useState(false);
+
+  return (<>
+    <Button 
+      label={`${showDrawer ? 'Click again to close' : 'Open'} Drawer`}
+      onClick={() => {
+        setShowDrawer(!showDrawer)
+      }}
+    />
+    <Drawer
+      visible={showDrawer}
+      clickOut
+      onClose={({clickOut}) => {
+        setShowDrawer(!clickOut)
+      }}
+    >
+      <DrawerMain>
+        <ButtonList label="clickOut Example"/>
+      </DrawerMain>
+    </Drawer>
+  </>)
+}
+```
+
+
+<Callout emoji="⚠️">
+There is a problem when using `Drawer ` with `clickOut` in the example above that when clicking again on the button that opens it, two events are fired, the `onClick` event on the button and the `onClose` event of the Drawer , to solve this situation you must create a reference to the button using `useRef()` and add it to Drawer . See an example below! 
+</Callout>
+
+```tsx bg=7,11,23
+import { useState, useRef } from 'react'
+import { Drawer, DrawerMain, Button, ButtonList } from "electronext"
+
+export const Page = () => {
+  
+  const [showDrawer, setShowDrawer] = useState(false);
+  const ButtonRef = useRef(null)
+
+  return (<>
+    <Button 
+      ref={ButtonRef}
+      label={`${showDrawer ? 'Click anywhere outside of `drawer` to close it' : 'Open'} Drawer`}
+      onClick={() => {
+        setShowDrawer(!showDrawer)
+      }}
+    />
+    <Drawer
+      visible={showDrawer}
+      clickOut
+      onClose={({clickOut}) => {
+        setShowDrawer(!clickOut)
+      }}
+      btnRef={ButtonRef}
+    >
+      <DrawerMain>
+        <ButtonList label="clickOut Example"/>
+      </DrawerMain>
+    </Drawer>
+  </>)
+}
+```

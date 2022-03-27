@@ -1,0 +1,39 @@
+---
+title: App > enconfig.json
+---
+
+## enconfig.json
+App configuration file.
+
+File location in the root of the App folder 
+```bash
+📁 Next
+ ├── pages/
+ ├── public/
+ ├─> enconfig.json  
+
+```
+Values / Types
+```ts
+  titleBar: {
+    visible: boolean,
+    favIcon: boolean,
+    menuIcon: boolean,
+    controlsType: 'windows' | 'macos', 
+    titlePosition: 'start' | 'center' | 'end',
+  }
+```
+Settings default
+```json 
+//enconfig.json
+{
+  "titleBar": {
+    "visible":true,
+    "favIcon": true,
+    "menuIcon": true,
+    "controlsType": "windows", 
+    "titlePosition": "start"
+  }
+}
+
+```

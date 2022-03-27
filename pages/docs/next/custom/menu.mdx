@@ -1,0 +1,82 @@
+---
+title: App > Custom > Menu
+---
+# Customizing the Menu 
+![ElectroNext.js Example](/img/app.custom.menu.png)
+
+The options in the main menu are just samples, you can create your own menu using electronext components or using your own stylized components, see how to do it below!
+
+## Creating Menu
+Create a `Menu` component in the `components` folder 
+```jsx bg=4
+//map
+📁 Next
+ ├─> components
+ │   └─> menu.tsx
+ ├── pages
+ ├── public
+
+```
+
+```tsx
+//menu.tsx
+
+import { ButtonList, DrawerHeader, DrawerMain, DrawerFooter, Hr  } from "electronext"
+
+export const Menu = () => {
+  return(<>
+    // link[6:18] /docs/App/components/DrawerHeader
+    <DrawerHeader>
+      <ButtonList label="Home"/>
+    </DrawerHeader>
+    // link[6:16] /docs/App/components/DrawerMain
+    <DrawerMain>
+      // link[8:10] /docs/App/components/Hr
+      <Hr/>
+      // link[8:18] /docs/App/components/ButtonList
+      <ButtonList label="Team Members"/>
+      <ButtonList label="Stats"/>
+    </DrawerMain>
+    // link[6:18] /docs/App/components/DrawerFooter
+    <DrawerFooter>
+      <ButtonList label="Settings" icon={'⚙️'}/>
+    </DrawerFooter>
+  </>)
+}
+```
+
+## Adding Menu
+In the `pages` folder locate the file `_electronext.tsx` 
+```jsx bg=6
+//map
+📁 Next
+ ├─> components
+ │   └─> menu.ts
+ ├── pages
+ │   └─> _electronext.tsx
+ ├── public
+
+```
+Import your `Menu` component and add in `ElectroNextApp` the `CustomMenuDrawer` property with its value being your `Menu` 
+```tsx focus=4,12
+//_electronext.tsx
+
+//add your new imports below ¬
+import { Menu } from 'components/menu'
+
+const AppElectroNext = ({children}) => {
+  const config = enconfig as enConfigAppType
+  return (
+    <ElectroNextApp 
+      Electron={globalThis.Electron}  
+      config={config}
+      CustomMenuDrawer={<Menu/>} 
+    >
+      {children}
+    </ElectroNextApp>
+  )
+}
+```
+
+## Result
+![ElectroNext.js Example](/img/app.custom.menu.result.png)

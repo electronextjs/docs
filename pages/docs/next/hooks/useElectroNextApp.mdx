@@ -1,0 +1,67 @@
+---
+title: App > Hooks > useElectroNextApp
+---
+import { useElectroNextApp } from "electronext"
+import Callout from 'nextra-theme-docs/callout'
+
+## useElectroNextApp
+
+### Return Values
+  >- `Electron?` : returns Electron API Rendering Process Modules
+  > > [clipboard](https://www.electronjs.org/pt/docs/latest/api/clipboard): (...)<br/> 
+  > > [contextBridge](https://www.electronjs.org/pt/docs/latest/api/context-bridge): (...)<br/> 
+  > > [crashReporter](https://www.electronjs.org/pt/docs/latest/api/crash-reporter): (...)<br/> 
+  > > [desktopCapturer](https://www.electronjs.org/pt/docs/latest/api/desktop-capturer): (...)<br/> 
+  > > [ipcRenderer](https://www.electronjs.org/pt/docs/latest/api/ipc-renderer): (...)<br/> 
+  > > [nativeImage](https://www.electronjs.org/pt/docs/latest/api/native-image): (...)<br/> 
+  > > [shell](https://www.electronjs.org/pt/docs/latest/api/shell): (...)<br/> 
+  > > [webFrame](https://www.electronjs.org/pt/docs/latest/api/web-frame): (...)<br/> 
+
+  - `title?` : returns the title of the page;
+  - `favicon?` : returns the url of the favicon;
+  - `titleBarColor?` : returns the color of the titleBar;
+  - `menuState?` : returns the boolean value of the Menu state; 
+
+> #### Usage:
+```tsx bg=5,9
+import { useElectroNextApp } from "electronext"
+
+export const Page = () => {
+
+  const { title } = useElectroNextApp()
+
+  return (
+    <div>
+      {title}
+    </div>
+  )
+}
+```
+<br/>
+
+### Options Object
+  - `title?` : defines a new title;
+  - `favicon?` : defines a new favicon;
+  - `titleBarColor?` : sets a new color for the titleBar;
+  - `menuState?` : sets a state to the Menu; 
+
+> #### Usage:
+```tsx bg=6
+import { useElectroNextApp } from "electronext"
+
+export const Page = () => {
+
+  const { title } = useElectroNextApp({
+    title: 'New Title'
+  })
+
+  return (
+    <div>
+      {title}
+    </div>
+  )
+}
+```
+<Callout emoji="⚠️">
+The `title` and `favicon` options used in `useElectroNextApp()` are prioritized if using the [`Title`](/docs/App/components/title) and [`Favicon`](/docs/App/components/favicon) components. 
+</Callout>

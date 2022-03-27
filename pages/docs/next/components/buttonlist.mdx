@@ -1,0 +1,101 @@
+---
+title: App > Components > ButtonList
+---
+
+import { ButtonList, Hr } from "electronext"
+
+
+## ButtonList
+```tsx
+import { ButtonList } from "electronext"
+
+export const Page = () => {
+  return (<>
+    <ButtonList label="ButtonList Example"/>
+  </>)
+}
+```
+<p><ButtonList label="ButtonList Example"/></p>
+
+## Props and Type
+
+### `label`
+- type `string`
+
+### `icon`
+> - type? `string | JSX.Element`
+> ```tsx
+> <ButtonList 
+>  label="ButtonList with icon"
+>  icon='✅'
+> />
+> ```
+> <p><ButtonList 
+>  label="ButtonList with icon"
+>  icon='✅'
+> /></p>
+
+### `active`
+> - type? `boolean`
+> ```tsx
+> <ButtonList 
+>  label="ButtonList with active `true`"
+>  active={true}
+> />
+> ```
+> <p><ButtonList 
+>  label="ButtonList with active `true`"
+>  active={true}
+> /></p>
+
+### `type`
+> -type? `'click' | 'select'`
+> ```tsx
+> <ButtonList 
+>  label="ButtonList with type='select"
+>  type='select'
+> />
+> ```
+> <p><ButtonList 
+>  label="ButtonList with type='select'"
+>  type='select'
+> /></p>
+> <p><ButtonList 
+>  label="ButtonList with type='click'"
+>  type='click'
+> /></p>
+
+### `onClick`
+> - type? `(e?:MouseEvent<HTMLButtonElement>) => any;`
+> ```tsx
+> <ButtonList 
+>  label="ButtonList with onClick"
+>  onClick={e => {
+>   alert('ok!')
+>  }}
+> />
+> ```
+> <p><ButtonList 
+>  label="ButtonList with onClick"
+>  onClick={e => {
+>   alert('ok!')
+>  }}
+> /></p>
+
+### `extUrl`
+> Open external url in browser 
+> - type? `string` url
+> ```tsx
+> <ButtonList 
+>  label="ButtonList with extUrl"
+>  extUrl='https://github.com/electronextjs'
+> />
+> ```
+> <p><ButtonList 
+>  label="ButtonList with extUrl"
+>  extUrl='https://github.com/electronextjs'
+> /></p>
+
+### `fontSize`
+- type? `number`
+

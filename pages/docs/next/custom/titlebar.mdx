@@ -1,0 +1,178 @@
+---
+title: App > Custom > Title Bar
+---
+
+# Customizing the Title Bar 
+![ElectroNext.js Example](/img/app.custom.titlebar.png)
+
+Create your own custom title bar for your app, see how to do it below!
+
+## Creating Title Bar
+Create a `TitleBar` component in the `components` folder 
+```jsx bg=4,5,6
+//map
+📁 Next
+ ├─> components
+ │   └─> Titlebar
+ │       └─> index.tsx
+ │       └─> styled.scss
+ ├── pages
+ ├── public
+
+```
+
+<CH.Code>
+
+```tsx index.tsx
+import { useState } from 'react'
+import { CustomTitleBar } from './styled'
+
+export const TitleBar = () => {
+
+  const [isMaximized, setIsMaximized] = useState(false)
+
+  return(<>
+    <CustomTitleBar>
+      <div className='window-appicon'>😁</div>
+      <div className='window-menubar'>
+        <span>File</span>
+        <span>Edit</span>
+        <span>Help</span>
+      </div>
+      <div className='window-title'>Your App Title</div>
+      <div className='window-controls'>
+        <span onClick={MinimizeApp}> &#xE921; </span>
+        <span onClick={MaximizeApp}> {isMaximized ? <>&#xE923;</> : <>&#xE922;</>} </span>
+        <span onClick={CloseApp}   > &#xE8BB; </span>
+      </div>
+    </CustomTitleBar >
+  </>)
+}
+// link[41:55] /docs/App/globalvariables
+const Electron = globalThis.Electron // Global Variable
+
+const MinimizeApp = () => {
+  Electron.ipcRenderer.send('MinimizeApp')
+}
+const MaximizeApp = () => {
+  Electron.ipcRenderer.send('MaximizeApp')
+  setIsMaximized(!isMaximized)
+}
+const CloseApp = () => {
+  Electron.ipcRenderer.send('CloseApp')
+}
+
+```
+
+```ts styled.ts
+import styled from "styled-components"
+
+export const CustomTitleBar = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  user-select: none;
+  position: relative;
+  -webkit-app-region: drag;
+  z-index: 0;
+
+  & .window-appicon {
+    padding: 0.3rem 0.3rem;
+  }
+  & .window-menubar {
+    display: flex;
+    -webkit-app-region: no-drag;
+
+    & span {  
+      display: flex;
+      align-items: center;
+      padding: 0 0.5rem;
+      height: 100%;
+      &:hover {
+        background-color: #00000145;
+      }
+    }
+  }
+  & .window-title {
+    position: absolute;
+    padding: 0.3rem 0.3rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: -1;
+  }
+
+  & .window-controls {
+    font-family: "Segoe MDL2 Assets", sans-serif;
+    text-rendering: geometricPrecision;
+
+    display: flex;
+    margin-left: auto;
+    font-size: 0.7rem;
+    -webkit-app-region: no-drag;
+
+    & span {  
+      display: flex;
+      align-items: center;
+      padding: 0 0.5rem;
+      height: 100%;
+      &:hover {
+        background-color: #00000145;
+      }
+    }
+  }
+`
+```
+</CH.Code>
+
+> ### Window Controls Icons 
+> `&#xE921;`: Minimize <br/>
+> `&#xE922;`: Maximize <br/>
+> `&#xE923;`: Restore <br/>
+> `&#xE8BB;`: Close
+> - CSS: <br/>
+> font-family: "Segoe MDL2 Assets", sans-serif;<br/>
+> text-rendering: geometricPrecision;
+
+> ### Window Drag 
+> - CSS: <br/>
+> `-webkit-app-region: drag;`: Drags the window when clicking on the element that has this property <br/>
+> `-webkit-app-region: no-drag;`: Does not drag the window when clicking on the element that has this property <br/>
+
+
+## Adding Title Bar
+In the `pages` folder locate the file `_electronext.tsx` 
+```jsx bg=8
+//map
+📁 Next
+ ├─> components
+ │   └─> Titlebar
+ │       └─> index.tsx
+ │       └─> styled.scss
+ ├── pages
+ │   └─> _electronext.tsx
+ ├── public
+
+```
+Import your `TitleBar` component and add in `ElectroNextApp` the `CustomTitleBar` property with its value being your `TitleBar` 
+```tsx focus=4,12
+//_electronext.tsx
+
+//add your new imports below ¬
+import { TitleBar  } from 'components/TitleBar'
+
+const AppElectroNext = ({children}) => {
+  const config = enconfig as enConfigAppType
+  return (
+    <ElectroNextApp 
+      Electron={globalThis.Electron}  
+      config={config}
+      CustomTitleBar={<TitleBar/>} 
+    >
+      {children}
+    </ElectroNextApp>
+  )
+}
+```
+
+## Result
+![ElectroNext.js Example](/img/app.custom.titlebar.result.png)

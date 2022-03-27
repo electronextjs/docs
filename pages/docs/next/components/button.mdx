@@ -1,0 +1,116 @@
+---
+title: App > Components > Button
+---
+
+import { Button, Hr } from "electronext"
+
+## Button
+```tsx
+import { Button } from "electronext"
+
+export const Page = () => {
+  return (<>
+    <Button label="Button Example"/>
+  </>)
+}
+```
+<p align="center"><Button label="Button Example"/></p>
+
+## Props and Type
+
+### `label`
+- type `string`
+
+### `icon`
+> - type? `string | JSX.Element`
+> ```tsx
+> <Button 
+>  label="Button with icon"
+>  icon='✅'
+> />
+> ```
+> <p align="center"><Button 
+>  label="Button with icon"
+>  icon='✅'
+> /></p>
+
+### `active`
+> - type? `boolean`
+> ```tsx
+> <Button 
+>  label="Button with active `true`"
+>  active={true}
+> />
+> ```
+> <p align="center"><Button 
+>  label="Button with active `true`"
+>  active={true}
+> /></p>
+
+### `type`
+> -type? `'default' | 'primary' | 'dark' | 'succ' | 'info' | 'warn' | 'dang' | 'gray'`
+> ```tsx
+> <Button 
+>  label="Button type='primary"
+>  type='primary'
+> />
+> ```
+> <p align="center"><Button 
+>  label="Button type='primary'"
+>  type='primary'
+> /></p>
+> <p align="center"><Button 
+>  label="Button type='dark'"
+>  type='dark'
+> /></p>
+> <p align="center"><Button 
+>  label="Button type='warn'"
+>  type='warn'
+> /></p>
+
+### `onClick`
+> - type? `(e?:MouseEvent<HTMLButtonElement>) => any;`
+> ```tsx
+> <Button 
+>  label="Button onClick"
+>  onClick={e => {
+>   alert('ok!')
+>  }}
+> />
+> ```
+> <p align="center"><Button 
+>  label="Button onClick"
+>  onClick={e => {
+>   alert('ok!')
+>  }}
+> /></p>
+
+### `loading`
+> - type? `boolean`;
+> ```tsx
+> <Button 
+>  label="Button with loading"
+>  loading={true}
+> />
+> ```
+> <p align="center"><Button 
+>  label="Button with loading"
+>  loading={true}
+> /></p>
+
+### `extUrl`
+> Open external url in browser 
+> - type? `string` url
+> ```tsx
+> <Button 
+>  label="Button with extUrl"
+>  extUrl='https://github.com/electronextjs'
+> />
+> ```
+> <p align="center"><Button 
+>  label="Button with extUrl"
+>  extUrl='https://github.com/electronextjs'
+> /></p>
+
+### `fontSize`
+- type? `number`

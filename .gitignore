@@ -1,0 +1,11 @@
+node_modules
+<<<<<<< HEAD
+.next
+=======
+.next
+.DS_Store
+yarn-error.log
+dist
+examples
+packages
+>>>>>>> 8caea165739b4c142ce4cf5347a99a4ad62e80dc
