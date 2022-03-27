@@ -16,7 +16,7 @@ export default function Nextra({ Component, pageProps }) {
 
       <meta name="twitter:title"           content="ElectroNext.js"/>
       <meta name="twitter:description "    content="Electron App Example with Next.js + Typescript"/>
-      <meta name="twitter:image:src"       content="https://electronextjs.github.io/.github/public/electronext.logo.png"/>
+      <meta name="twitter:image:src"       content="https://electronextjs.github.io/.github/public/electronext.logo@200x200.png"/>
       <meta name="twitter:card"            content="summary"/>
 
       <meta property="og:type"             content="website" />
@@ -25,7 +25,7 @@ export default function Nextra({ Component, pageProps }) {
       <meta property="og:url"              content="https://electronextjs.vercel.app" />
       <meta property="og:title"            content="ElectroNext.js"/>
       <meta property="og:description"      content="Electron App Example with Next.js + Typescript"/>
-      <meta property="og:image"            content="https://electronextjs.github.io/.github/public/electronext.logo.png"/>
+      <meta property="og:image"            content="https://electronextjs.github.io/.github/public/electronext.logo@200x200.png"/>
 
       <link rel="icon" href="/electronext.logo.svg" />
 
